@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using WordPressNet.Models;
 
@@ -12,7 +12,7 @@ namespace WordPressNet
         public WordPressRequestXml(WordpressConfig config)
         {
             wpConfig = config;
-            fileTypes = FileTypes();
+            fileTypes = FileTypes;
         }
 
         public string NewCategory(Category category)
@@ -62,9 +62,12 @@ namespace WordPressNet
                     </methodCall>";
         }
 
-        private string[,] FileTypes()
+
+        private string[,] FileTypes
         {
-            return new string[9, 2] {
+            get
+            {
+                return new string[9, 2] {
                 {"wav","audio/wav" },
                 {"gif","image/gif"},
                 {"jpeg","image/jpeg"},
@@ -74,7 +77,8 @@ namespace WordPressNet
                 {"avi","video/avi"},
                 {"mpeg","video/mpeg"},
                 {"pdf","application/pdf"}
-            };
+               };
+            }
         }
         private string GetFileType(string file)
         {
